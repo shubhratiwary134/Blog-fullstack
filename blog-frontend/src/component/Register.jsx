@@ -1,5 +1,14 @@
 import { useState } from "react"
 export default function Register(){
+    async function getUsername(e) {
+        e.preventDefault()
+       await  fetch('http://localhost:4000/register',{
+            method:'POST',
+            body:JSON.stringify({nameInput,passInput}),
+            headers:{'Content-Type':'application/json'},
+        })
+        
+    }
     
     const [nameInput,setNameInput]=useState('')
     const [passInput,setPassInput]=useState('')
@@ -16,9 +25,7 @@ export default function Register(){
           value={passInput}
           onChange={(e)=>setPassInput(e.target.value)}
         ></input>
-        <button className="px-10 border-2 border-black" onClick={()=>{
-            alert('submitted the form')
-        }}>submit</button>
+        <button className="px-10 border-2 border-black" onClick={getUsername}>submit</button>
             </div>
       
         </div>
