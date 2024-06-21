@@ -1,12 +1,15 @@
 const express = require('express')
 const cors = require('cors')
+const userModel = require('./db')
 const app=express()
+const mongoose= require('mongoose')
 app.use(cors())
-
-app.post('/register',(req,res)=>{
-    // const username = req.body.nameInput // input from register.jsx
-    // const password = req.body.passInput
-    res.json('registered')
+app.use(express.json())
+mongoose.connect('mongodb+srv://shubhra-todo:shubhra-todo@cluster0.kjzuilm.mongodb.net/')
+app.post('/register', async function(req,res){
+   const {username,password}=req.body
+   await userModel.create({username,password})
+   res.json('the user created')
 })
 
 app.listen(4000,console.log('the app is listening'))
