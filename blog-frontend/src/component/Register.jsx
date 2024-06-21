@@ -1,13 +1,20 @@
+
 import { useState } from "react"
 export default function Register(){
     async function getUsername(e) {
         e.preventDefault()
-   await  fetch('http://localhost:4000/register',{
-            method:'POST',
-            headers:{'Content-Type':'application/json'},
-            body:JSON.stringify({nameInput,passInput}),
-            
-        })
+         const response = await  fetch('http://localhost:4000/register',{
+                method:'POST',
+                headers:{'Content-Type':'application/json'},
+                body:JSON.stringify({nameInput,passInput}),  
+            })
+            if(response.status===200){
+                setNameInput('')
+                setPassInput('')
+            }
+             else if(response.status===400){
+            alert('wrong input')
+           }
     }
     
     const [nameInput,setNameInput]=useState('')

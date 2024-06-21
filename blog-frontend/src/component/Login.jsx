@@ -1,6 +1,22 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 export default function Login(){
+    const navigate=useNavigate()
+    async function LoginUserFunction(e) {
+        e.preventDefault()
+         const response = await  fetch('http://localhost:4000/login',{
+                method:'POST',
+                headers:{'Content-Type':'application/json'},
+                body:JSON.stringify({nameInput,passInput}),  
+            })
+            if(response.status===200){
+               navigate('/')
+            }
+             else if(response.status===400){
+            alert('wrong input')
+           }
+    }
     const [nameInput,setNameInput]=useState('')
     const [passInput,setPassInput]=useState('')
     return (
@@ -16,9 +32,7 @@ export default function Login(){
           value={passInput}
           onChange={(e)=>setPassInput(e.target.value)}
         ></input>
-        <button className="px-10 border-2 border-black" onClick={()=>{
-            alert('submitted the form')
-        }}>submit</button>
+        <button className="px-10 border-2 border-black" onClick={LoginUserFunction}>submit</button>
             </div>
       
         </div>
