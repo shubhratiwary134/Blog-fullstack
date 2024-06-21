@@ -2,12 +2,12 @@ import { useState } from "react"
 export default function Register(){
     async function getUsername(e) {
         e.preventDefault()
-       await  fetch('http://localhost:4000/register',{
+   await  fetch('http://localhost:4000/register',{
             method:'POST',
-            body:JSON.stringify({nameInput,passInput}),
             headers:{'Content-Type':'application/json'},
+            body:JSON.stringify({nameInput,passInput}),
+            
         })
-        
     }
     
     const [nameInput,setNameInput]=useState('')
