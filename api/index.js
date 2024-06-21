@@ -34,7 +34,7 @@ app.post('/login',async function(req,res)
      if(!response){
       res.status(400).json({message:'user not found'})
      }
-     const passwordCheck=bcrypt.compare(password,response.password)
+     const passwordCheck=await bcrypt.compare(password,response.password)
      if(passwordCheck){
       res.status(200).json({message:'user found'})
      }
