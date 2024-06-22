@@ -9,6 +9,7 @@ export default function Login(){
                 method:'POST',
                 headers:{'Content-Type':'application/json'},
                 body:JSON.stringify({nameInput,passInput}),  
+                credentials:'include',
             })
             if(response.status===200){
                navigate('/')

@@ -4,8 +4,10 @@ const userModel = require('./db')
 const bcrypt = require('bcryptjs')
 const app=express()
 const mongoose= require('mongoose')
-app.use(cors())
+const jwt = require('jsonwebtoken')
+app.use(cors({credentials:true,origin:'http://localhost:5173'}))
 const saltRound =10
+const secret='shubhratiwary8'
 mongoose.connect('mongodb+srv://shubhra-todo:shubhra-todo@cluster0.kjzuilm.mongodb.net/')
 app.use(express.json())
 
@@ -36,7 +38,13 @@ app.post('/login',async function(req,res)
      }
      const passwordCheck=await bcrypt.compare(password,response.password)
      if(passwordCheck){
-      res.status(200).json({message:'user found'})
+      res.status(200)
+     const token =jwt.sign({username,id:response._id},secret)
+     res.cookie(token).json({message:'user found'})
+      //(payload,security,options,callback function)
+      
+
+      //send token 
      }
      else{
       res.status(400).json({message:'incorrect password'})
