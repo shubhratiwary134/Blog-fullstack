@@ -1,7 +1,10 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import  useStore  from '../storage/store'
 
 export default function Login(){
+   
+    const {setIsLoggedIn}=useStore()
     const navigate=useNavigate()
     async function LoginUserFunction(e) {
         e.preventDefault()
@@ -12,6 +15,7 @@ export default function Login(){
                 credentials:'include',
             })
             if(response.status===200){
+                setIsLoggedIn()
                navigate('/')
             }
              else if(response.status===400){

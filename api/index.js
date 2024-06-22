@@ -42,8 +42,6 @@ app.post('/login',async function(req,res)
      const token =jwt.sign({username,id:response._id},secret)
      res.cookie(token).json({message:'user found'})
       //(payload,security,options,callback function)
-      
-
       //send token 
      }
      else{
