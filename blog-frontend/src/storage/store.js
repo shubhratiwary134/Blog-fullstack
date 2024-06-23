@@ -2,8 +2,6 @@ import { create } from 'zustand'
 
  const useStore = create((set)=>({
     isLoggedIn:false,
-    setIsLoggedIn:()=>{
-        set({isLoggedIn:true})
-    }
+    setIsLoggedIn:(state)=>set({isLoggedIn:state})
  }))
 export default useStore
