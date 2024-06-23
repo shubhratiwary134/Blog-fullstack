@@ -32,13 +32,16 @@ export default function Navbar(){
         setIsLoggedIn(false)
     }
     }
+    function handleCreateRoute(){
+        navigate('/create')
+    }
     return (
         <div className='flex justify-between p-4'>
             <div className="p-2" >Blogo </div>
             {isLoggedIn ? 
             <div className="flex w-1/2 justify-end gap-2 p-2">
             <div> 
-                <button >Create a Post</button>
+                <button onClick={handleCreateRoute}>Create a Post</button>
                  </div>
             <div>
                 <button onClick={logout} >Logout</button>
