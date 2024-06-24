@@ -19,7 +19,7 @@ app.post('/register', async function(req,res){
    const password =req.body.passInput
    try{
       const hashedPassword = await bcrypt.hash(password,saltRound)
-      await userModel.create({
+      await User.create({
          username,
          password:hashedPassword
       })
@@ -35,7 +35,7 @@ app.post('/login',async function(req,res)
    const username=req.body.nameInput
    const password=req.body.passInput
    try{  
-     const response=await userModel.findOne({username})
+     const response=await User.findOne({username})
      if(!response){
       res.status(400).json({message:'user not found'})
      }
@@ -86,7 +86,7 @@ app.post('/createPost',async (req,res)=>{
       const {title,summary,content}=req.body
       const id = decoded.id
       try{
-         await postModel.create({
+         await Post.create({
             title,
             summary,
             content,
