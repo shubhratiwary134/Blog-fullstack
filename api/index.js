@@ -1,6 +1,6 @@
 const express = require('express')
 const cors = require('cors')
-const userModel = require('./db')
+const{ User , Post } = require('./db')
 const bcrypt = require('bcryptjs')
 const app=express()
 const mongoose= require('mongoose')
@@ -26,7 +26,8 @@ app.post('/register', async function(req,res){
       res.status(200).json({message:'user created successfully'})
    }
   catch(error){
-   res.status(400).json({message:'wrong input by the user '})
+   res.status(400).json({message:'incorrect field'})
+   
   }
 })
 app.post('/login',async function(req,res)
@@ -73,5 +74,30 @@ app.post('/logout',(req,res)=>{
    res.clearCookie('token') //clearing cookie 
    res.status(200).json({message:'logged out successfully'})
 })
-
+app.post('/createPost',async (req,res)=>{
+   const token = req.cookies.token
+   if (!token) {
+      return res.status(403).send('Token is required');
+    }
+     jwt.verify(token,secret,async (err,decoded)=>{
+      if(err){
+         return res.status(401).send('Invalid token')
+      }
+      const {title,summary,content}=req.body
+      const id = decoded.id
+      try{
+         await postModel.create({
+            title,
+            summary,
+            content,
+            author:id
+         })
+         res.status(201).json({message:'user created successfully'})
+      }catch(err){
+         res.status(400).json({message:'unable to create a post '})
+      }
+  
+    })
+   
+})
 app.listen(4000,console.log('the app is listening'))
