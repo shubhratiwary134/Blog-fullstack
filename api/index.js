@@ -108,6 +108,15 @@ app.get('/blogs',async(req,res)=>{
    }
 })
 app.post('/delete/:id',async(req,res)=>{
-   const 
+   const token =req.cookies.token
+   if (!token) {
+      return res.status(403).send('Token is required');
+    }
+   jwt.verify(token,secret,async (err,decoded)=>{
+      if(err) throw err
+     try{
+      await Post.
+     }
+   })
 })
 app.listen(4000,console.log('the app is listening'))
