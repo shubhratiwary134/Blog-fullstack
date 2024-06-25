@@ -24,7 +24,7 @@ export default function Navbar(){
 
        }
        checkToken()
-    },[])
+    },[setIsLoggedIn,setUserName])
    
     const navigate = useNavigate()
 

@@ -1,9 +1,10 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import useStore from "../storage/store"
 
 
 const Main = () => {
-    const {blogs,setBlogs,isLoggedIn,username} = useStore()
+    const {isLoggedIn,username} = useStore()
+    const [blogs,setBlogs]=useState([]) 
     useEffect(()=>{
         async function displayBlogs(){
             const response = await  fetch('http://localhost:4000/blogs',{
@@ -12,19 +13,19 @@ const Main = () => {
             })
             if(response.status===200){
                 const data = await response.json()
-                setBlogs(data)
+                    setBlogs(data)   
             }
 
         }
         displayBlogs()
-    },[setBlogs])
+    },[setBlogs,blogs])
     async function handleDelete(postId){
         const response = await fetch(`http://localhost:4000/deletePost/${postId}`, {
             method: 'DELETE',
             credentials: 'include',
-          });
+          })
           if (response.ok) {
-            setBlogs(blogs.filter(blog => blog._id !== postId))
+            setBlogs((prevBlogs) => prevBlogs.filter(blog => blog._id !== postId))
           }else{
             console.error('failed to delete post')
           }
@@ -39,8 +40,9 @@ const Main = () => {
                     <h4>{blog.content}</h4>
                     <p>posted by {blog.author.username}</p>
                     {isLoggedIn && blog.author.username === username && (
-            <button onClick={() => handleDelete(blog._id)}>Delete</button>
+            <button onClick={()=>{handleDelete(blog._id)}}>Delete</button>
           )}
+          
         
                 </div>
             )

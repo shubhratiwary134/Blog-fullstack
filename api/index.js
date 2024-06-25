@@ -107,7 +107,7 @@ app.get('/blogs',async(req,res)=>{
       res.status(500).json({ message: 'Error fetching blogs' })
    }
 })
-app.post('/delete/:id',async(req,res)=>{
+app.delete('/deletePost/:id',async(req,res)=>{
    const token =req.cookies.token
    if (!token) {
       return res.status(403).send('Token is required');
