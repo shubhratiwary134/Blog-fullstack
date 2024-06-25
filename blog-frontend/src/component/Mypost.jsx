@@ -1,0 +1,41 @@
+import { useEffect, useState } from "react"
+import useStore from "../storage/store"
+
+
+const Mypost = () => {
+    const[posts,setPosts]=useState([])
+    const {username} = useStore()
+    useEffect(()=>{
+        async function myPosts(username){
+            const response = await fetch(`http://localhost:4000/myPosts/${username}`,{
+                method:'GET',
+                credentials:'include',
+            })
+            if(response.ok){
+                const data = await response.json()
+                setPosts(data)
+            }else{
+                console.log('error fetching the posts')
+            }
+        }
+        myPosts(username)
+    },[username,setPosts])
+    
+  return (
+    <div className="w-full  flex flex-col items-center gap-10 mt-12">
+        {
+            posts.map((post)=>{
+                return (
+                    <div key={post._id} className="w-1/2 border-2 border-black p-5 flex flex-col gap-5 shadow-2xl">
+                        <h1 >{post.title}</h1>
+                        <h2>{post.summary}</h2>
+                        <h4>{post.content}</h4>
+                    </div>
+                )
+            })
+        }
+    </div>
+  )
+}
+
+export default Mypost

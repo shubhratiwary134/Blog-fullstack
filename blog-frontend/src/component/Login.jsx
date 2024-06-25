@@ -5,7 +5,6 @@ import  useStore  from '../storage/store'
 export default function Login(){
    
     const {setIsLoggedIn}=useStore()
-   
     const navigate=useNavigate()
     async function LoginUserFunction(e) {
         e.preventDefault()

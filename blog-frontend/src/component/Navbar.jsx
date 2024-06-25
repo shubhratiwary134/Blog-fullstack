@@ -40,29 +40,37 @@ export default function Navbar(){
     function handleCreateRoute(){
         navigate('/create')
     }
+    function handleMyPost(){ 
+        navigate(`/myPost/${username}`)
+        }
+    
     return (
         <div className='flex justify-between p-4'>
             <div className="p-2" >Blogo </div>
             {isLoggedIn ? 
             <div className="flex w-1/2 justify-end gap-5 p-2">
-                 <div className="flex flex-col ">
-                    <div>
-                    <CgProfile size={32}/>
-                    </div>
-               <div>
-               <p className="text-black">{username}</p>
-              
-               </div>
-               
-                  
-                 </div>
+                 
             <div> 
                 <button onClick={handleCreateRoute}>Create a Post</button>
+                 </div>
+                 <div>
+                    <button onClick={handleMyPost}>My posts</button>
                  </div>
                 
             <div>
                 <button onClick={logout} >Logout</button>
             </div>
+            <div className="flex flex-col ">
+                    <div>
+                    <CgProfile size={32}/>
+                    </div>
+               <div>
+               <p className="text-black">{username}</p>
+         
+               </div>
+               
+                  
+                 </div>
             </div>
             :
             <div className="flex w-1/2 justify-end gap-2 p-2">

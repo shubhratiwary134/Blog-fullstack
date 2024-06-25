@@ -134,4 +134,26 @@ app.delete('/deletePost/:id',async(req,res)=>{
      }
    })
 })
+app.get('/myPosts/:username',async (req,res)=>{
+   const token = req.cookies.token
+  
+   if(!token){
+      res.status(403).send('token is required')
+   }
+   try{
+      jwt.verify(token,secret,async (err,decoded)=>{
+         if(err) {
+            res.status(401).send('invalid token')
+         }
+         const username = req.params.username
+         const user = await User.findOne({username})
+         const posts = await Post.find({author:user._id})  
+         res.status(200).json(posts)
+      })
+   }catch(error){
+      res.status(500).send('error fetching posts ')
+   }
+   
+
+})
 app.listen(4000,console.log('the app is listening'))

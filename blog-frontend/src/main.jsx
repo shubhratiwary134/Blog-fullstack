@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Register from './component/Register.jsx';
 import Login from './component/Login.jsx';
 import Createpost from './component/Createpost.jsx';
+import Mypost from './component/Mypost.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -15,6 +16,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Route path='/register' element={<Register/>}></Route>
       <Route path='/login' element={<Login/>}></Route>
       <Route path='/create' element={<Createpost/>}></Route>
+      <Route path='/myPost/:username' element={<Mypost/>}></Route>
     </Routes>
     </BrowserRouter>
   </React.StrictMode>,
