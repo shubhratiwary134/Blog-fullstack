@@ -45,7 +45,7 @@ export default function Navbar(){
         }
     
     return (
-        <div className='flex justify-between p-4'>
+        <div className='flex justify-between p-4 bg-[#fefefe] shadow-xl '>
             <div className="p-2" >Blogo </div>
             {isLoggedIn ? 
             <div className="flex w-1/2 justify-end gap-5 p-2">

@@ -10,7 +10,7 @@ function App() {
   return (
    
 
-    <div className='container-main '>
+    <div className='container-main bg-[#f8f8f8]'>
       <div className='Navbar'>
         <Navbar></Navbar>
       </div>

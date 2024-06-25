@@ -13,8 +13,7 @@ const Mypost = () => {
             })
             if(response.ok){
                 const data = await response.json()
-                setPosts(data.posts)
-                
+                setPosts(data.posts)         
             }else{
                 console.log('error fetching the posts')
             }
