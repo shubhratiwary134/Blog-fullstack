@@ -136,7 +136,6 @@ app.delete('/deletePost/:id',async(req,res)=>{
 })
 app.get('/myPosts/:username',async (req,res)=>{
    const token = req.cookies.token
-  
    if(!token){
       res.status(403).send('token is required')
    }
@@ -148,7 +147,8 @@ app.get('/myPosts/:username',async (req,res)=>{
          const username = req.params.username
          const user = await User.findOne({username})
          const posts = await Post.find({author:user._id})  
-         res.status(200).json(posts)
+         res.status(200).json({posts,decoded})
+         
       })
    }catch(error){
       res.status(500).send('error fetching posts ')

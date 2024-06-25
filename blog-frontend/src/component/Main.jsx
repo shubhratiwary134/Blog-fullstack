@@ -30,7 +30,7 @@ const Main = () => {
           }
     }
   return (
-    <div className="w-full  flex flex-col items-center gap-2 mt-12">
+    <div className="w-full  flex flex-col items-center gap-5 mt-12">
         {blogs.map((blog)=>{
             return(
                 <div key={blog._id} className="w-1/2 border-2 border-black p-5 flex flex-col gap-5 shadow-2xl">

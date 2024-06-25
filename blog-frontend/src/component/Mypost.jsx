@@ -13,16 +13,21 @@ const Mypost = () => {
             })
             if(response.ok){
                 const data = await response.json()
-                setPosts(data)
+                setPosts(data.posts)
+                
             }else{
                 console.log('error fetching the posts')
             }
         }
-        myPosts(username)
+        if(username){
+            myPosts(username)
+        }
+        
     },[username,setPosts])
     
   return (
     <div className="w-full  flex flex-col items-center gap-10 mt-12">
+        <h1>My posts</h1>
         {
             posts.map((post)=>{
                 return (
@@ -33,7 +38,10 @@ const Mypost = () => {
                     </div>
                 )
             })
+            
         }
+        {console.log(posts)}
+    
     </div>
   )
 }

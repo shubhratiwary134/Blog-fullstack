@@ -60,9 +60,9 @@ export default function Navbar(){
             <div>
                 <button onClick={logout} >Logout</button>
             </div>
-            <div className="flex flex-col ">
+            <div className="flex flex-col items-center ">
                     <div>
-                    <CgProfile size={32}/>
+                    <CgProfile size={20}/>
                     </div>
                <div>
                <p className="text-black">{username}</p>
