@@ -1,8 +1,11 @@
 import { useNavigate } from "react-router-dom"
 import  useStore  from "../storage/store"
 import { useEffect } from "react"
+import { CgProfile } from "react-icons/cg";
 export default function Navbar(){
     const {isLoggedIn,setIsLoggedIn}=useStore()
+    const {setUserName}=useStore()
+    const {username}=useStore()
     useEffect(  ()=>{
       const checkToken= async ()=>{
 
@@ -13,6 +16,8 @@ export default function Navbar(){
         
         if(response.status===200){
             setIsLoggedIn(true)
+            const data = await response.json()
+            setUserName(data.user.username) // we save the response in the data and use the username, and set it in the global state.
         }else{
             setIsLoggedIn(false)
         }
@@ -39,10 +44,22 @@ export default function Navbar(){
         <div className='flex justify-between p-4'>
             <div className="p-2" >Blogo </div>
             {isLoggedIn ? 
-            <div className="flex w-1/2 justify-end gap-2 p-2">
+            <div className="flex w-1/2 justify-end gap-5 p-2">
+                 <div className="flex flex-col ">
+                    <div>
+                    <CgProfile size={32}/>
+                    </div>
+               <div>
+               <p className="text-black">{username}</p>
+              
+               </div>
+               
+                  
+                 </div>
             <div> 
                 <button onClick={handleCreateRoute}>Create a Post</button>
                  </div>
+                
             <div>
                 <button onClick={logout} >Logout</button>
             </div>

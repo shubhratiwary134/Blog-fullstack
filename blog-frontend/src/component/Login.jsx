@@ -5,6 +5,7 @@ import  useStore  from '../storage/store'
 export default function Login(){
    
     const {setIsLoggedIn}=useStore()
+   
     const navigate=useNavigate()
     async function LoginUserFunction(e) {
         e.preventDefault()
@@ -17,6 +18,7 @@ export default function Login(){
             if(response.status===200){
                 setIsLoggedIn()
                navigate('/')
+             
             }
              else if(response.status===400){
             alert('wrong input')

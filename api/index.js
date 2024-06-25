@@ -100,4 +100,12 @@ app.post('/createPost',async (req,res)=>{
     })
    
 })
+app.get('/blogs',async(req,res)=>{
+   try{
+      const blogs = await Post.find().populate('author','username') // it finds all the posts and then adds the specific username field in the author 
+      res.status(200).json(blogs)
+   }catch(err){
+      res.status(500).json({ message: 'Error fetching blogs' })
+   }
+})
 app.listen(4000,console.log('the app is listening'))
