@@ -3,7 +3,7 @@ import useStore from "../storage/store"
 
 
 const Main = () => {
-    const {blogs,setBlogs,isLoggedIn} = useStore()
+    const {blogs,setBlogs,isLoggedIn,username} = useStore()
     useEffect(()=>{
         async function displayBlogs(){
             const response = await  fetch('http://localhost:4000/blogs',{
@@ -38,9 +38,10 @@ const Main = () => {
                     <h2>{blog.summary}</h2>
                     <h4>{blog.content}</h4>
                     <p>posted by {blog.author.username}</p>
-                    {isLoggedIn && blog.author.username === isLoggedIn.username && (
+                    {isLoggedIn && blog.author.username === username && (
             <button onClick={() => handleDelete(blog._id)}>Delete</button>
           )}
+        
                 </div>
             )
         })}
