@@ -3,7 +3,7 @@ import useStore from "../storage/store"
 
 
 const Main = () => {
-    const {blogs,setBlogs} = useStore()
+    const {blogs,setBlogs,isLoggedIn} = useStore()
     useEffect(()=>{
         async function displayBlogs(){
             const response = await  fetch('http://localhost:4000/blogs',{
@@ -18,6 +18,17 @@ const Main = () => {
         }
         displayBlogs()
     },[setBlogs])
+    async function handleDelete(postId){
+        const response = await fetch(`http://localhost:4000/deletePost/${postId}`, {
+            method: 'DELETE',
+            credentials: 'include',
+          });
+          if (response.ok) {
+            setBlogs(blogs.filter(blog => blog._id !== postId))
+          }else{
+            console.error('failed to delete post')
+          }
+    }
   return (
     <div className="w-full  flex flex-col items-center gap-2 mt-12">
         {blogs.map((blog)=>{
@@ -27,6 +38,9 @@ const Main = () => {
                     <h2>{blog.summary}</h2>
                     <h4>{blog.content}</h4>
                     <p>posted by {blog.author.username}</p>
+                    {isLoggedIn && blog.author.username === isLoggedIn.username && (
+            <button onClick={() => handleDelete(blog._id)}>Delete</button>
+          )}
                 </div>
             )
         })}

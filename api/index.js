@@ -113,9 +113,24 @@ app.post('/delete/:id',async(req,res)=>{
       return res.status(403).send('Token is required');
     }
    jwt.verify(token,secret,async (err,decoded)=>{
-      if(err) throw err
+      if (err) {
+         return res.status(401).send('Invalid token');
+       }
+       const postId = req.params.id;
+       const userId = decoded.id;
+   
      try{
-      await Post.
+      const post = await Post.findById(postId)
+      if (!post) {
+         return res.status(404).send('Post not found');
+       }
+       if (post.author.toString() !== userId) {
+         return res.status(403).send('You are not authorized to delete this post');
+       }
+       await Post.findByIdAndDelete(postId)
+       res.status(200).send('Post deleted successfully')
+     }catch(error){
+      res.status(500).send('An error occurred')
      }
    })
 })
