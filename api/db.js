@@ -5,7 +5,7 @@ const userSchema=  new Schema({
     username:{type:String,required:true,unique:true,min:4},
     password:{type:String,required:true}
 })
-const User =  mongoose.model('user',userSchema)
+const User =  mongoose.model('User',userSchema)
 const postSchema = new Schema({
     title : {
         type:String,
@@ -25,6 +25,6 @@ const postSchema = new Schema({
     }
 })
 
-const Post = mongoose.model('post',postSchema)
+const Post = mongoose.model('Post',postSchema)
 
     module.exports={User,Post}
