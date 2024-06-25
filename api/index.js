@@ -58,7 +58,6 @@ app.post('/login',async function(req,res)
 )
 app.get('/protected',(req,res)=>{
    const token = req.cookies.token
-  
    if (!token) {
       return res.status(403).send('Token is required');
     }
@@ -107,5 +106,8 @@ app.get('/blogs',async(req,res)=>{
    }catch(err){
       res.status(500).json({ message: 'Error fetching blogs' })
    }
+})
+app.post('/delete/:id',async(req,res)=>{
+   const 
 })
 app.listen(4000,console.log('the app is listening'))
