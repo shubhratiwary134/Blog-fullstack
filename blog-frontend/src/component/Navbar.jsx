@@ -18,6 +18,7 @@ export default function Navbar(){
             setIsLoggedIn(true)
             const data = await response.json()
             setUserName(data.user.username) // we save the response in the data and use the username, and set it in the global state.
+            localStorage.setItem('username',data.user.username)
         }else{
             setIsLoggedIn(false)
         }
@@ -51,21 +52,21 @@ export default function Navbar(){
             <div className="flex w-1/2 justify-end gap-5 p-2">
                  
             <div> 
-                <button onClick={handleCreateRoute}>Create a Post</button>
+                <button onClick={handleCreateRoute} >Create a Post</button>
                  </div>
                  <div>
                     <button onClick={handleMyPost}>My posts</button>
                  </div>
                 
             <div>
-                <button onClick={logout} >Logout</button>
+                <button onClick={logout} className="text-red-400" >Logout</button>
             </div>
             <div className="flex flex-col items-center ">
                     <div>
-                    <CgProfile size={20}/>
+                    <CgProfile size={24}/>
                     </div>
                <div>
-               <p className="text-black">{username}</p>
+               <p className="text-blue-700">{username}</p>
          
                </div>
                
