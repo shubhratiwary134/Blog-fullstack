@@ -18,7 +18,7 @@ const Createpost = () => {
     if(response.status===201){
       setTitle('')
       setSummary('')
-      setTitle('')
+      setContent('')
       navigate('/')
     }
     else{

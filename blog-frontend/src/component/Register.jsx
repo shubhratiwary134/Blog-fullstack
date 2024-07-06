@@ -1,6 +1,8 @@
 
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 export default function Register(){
+    const navigate=useNavigate()
     async function getUsername(e) {
         e.preventDefault()
          const response = await  fetch('http://localhost:4000/register',{
@@ -12,6 +14,7 @@ export default function Register(){
             if(response.status===200){
                 setNameInput('')
                 setPassInput('')
+                navigate('/') //navigate inside and for that check the token 
             }
              else if(response.status===400){
             alert('wrong input')

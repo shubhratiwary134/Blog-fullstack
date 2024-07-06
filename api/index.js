@@ -27,7 +27,6 @@ app.post('/register', async function(req,res){
    }
   catch(error){
    res.status(400).json({message:'incorrect field'})
-   
   }
 })
 app.post('/login',async function(req,res)
