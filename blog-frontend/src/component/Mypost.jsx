@@ -25,7 +25,9 @@ const Mypost = () => {
         }
         
     },[username,setPosts])
-    
+    function handleDelete(){
+        // fetch the delete endpoint and if response ok then delete from the posts
+    }
   return (
     <div className="w-full  flex flex-col items-center gap-10 ">
         <div className="w-full flex  items-center shadow-xl p-10  ">
@@ -46,6 +48,7 @@ const Mypost = () => {
                         <h1 >{post.title}</h1>
                         <h2>{post.summary}</h2>
                         <h4>{post.content}</h4>
+                        <button onClick={handleDelete}>delete</button>
                     </div>
                 )
             })

@@ -12,7 +12,7 @@ export default function Navbar(){
         const response=await fetch('http://localhost:4000/protected',{
             method:'GET',
             credentials:'include',
-        })
+        })  
         
         if(response.status===200){
             setIsLoggedIn(true)
