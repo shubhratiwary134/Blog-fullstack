@@ -3,6 +3,7 @@ const cors = require('cors')
 const{ User , Post } = require('./db')
 const bcrypt = require('bcryptjs')
 const app=express()
+require('dotenv').config();
 const mongoose= require('mongoose')
 const jwt = require('jsonwebtoken')
 const cookieParser=require('cookie-parser')
