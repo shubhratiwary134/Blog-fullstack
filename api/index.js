@@ -9,7 +9,7 @@ const cookieParser=require('cookie-parser')
 app.use(cors({credentials:true,origin:'http://localhost:5173'}))
 const saltRound =10
 const secret='shubhratiwary8'
-mongoose.connect('mongodb+srv://shubhra-todo:shubhra-todo@cluster0.kjzuilm.mongodb.net/')
+mongoose.connect(process.env.MONGO_URL)
 app.use(express.json())
 app.use(cookieParser())
 
