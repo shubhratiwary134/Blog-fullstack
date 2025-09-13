@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken')
 const cookieParser=require('cookie-parser')
 app.use(cors({credentials:true,origin:'http://localhost:5173'}))
 const saltRound =10
-const secret='shubhratiwary8'
+const secret=process.env.SECRET
 mongoose.connect(process.env.MONGO_URL)
 app.use(express.json())
 app.use(cookieParser())
